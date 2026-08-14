@@ -1,0 +1,168 @@
+# 黑客松追蹤清單 — 唯一事實來源
+#
+# 硬規則（← HR-004）：
+#   每個日期欄位都必須帶 source_tier，四選一：
+#     official  主辦方官網／官方公告頁      → 可觸發通知
+#     gallery   Devpost 等結構化專案藝廊     → 可觸發通知
+#     press     媒體報導、學校新聞稿         → 可觸發通知，訊息內須標來源
+#     inferred  依歷屆時間推估               → 不得觸發通知，只用來決定檢查頻率
+#
+# status: open | upcoming | tbd | closed
+# eligibility: open（不限身分）| student（限學生）
+
+meta:
+  updated: 2026-08-14
+  timezone: Asia/Taipei
+  # 檢查頻率隨月份調整（← HR-003）
+  cadence:
+    dense_months: [9, 10, 11]   # 每週檢查
+    dense_interval: weekly
+    default_interval: monthly
+
+events:
+
+  # ---------- 不限學生身分，可直接報名 ----------
+
+  - id: devnetwork-api-cloud-ai
+    name: DevNetwork [API + Cloud + AI] Hackathon
+    host: DevNetwork
+    eligibility: open
+    status: upcoming
+    region: Santa Clara / 線上
+    dates:
+      kickoff: { value: 2026-08-17, source_tier: official }
+      event: { value: 2026-09-02/2026-09-03, source_tier: official }
+    url: https://api-cloud-ai-hackathon-2026.devpost.com/
+    notes: Devpost 掛牌，可線上參賽
+
+  - id: aws-ai-agent-global
+    name: AWS AI Agent Global Hackathon
+    host: AWS
+    eligibility: open
+    status: tbd
+    region: 線上
+    dates:
+      registration: { value: 2026-09?, source_tier: inferred }
+      # 2025 場為 09-08 → 10-20，12 月 re:Invent 公布得獎
+    url: https://aws-agent-hackathon.devpost.com/
+    last_year_winners:
+      - { name: EcoLafaek, rank: 1, source_tier: gallery }
+      - { name: AegisAgent, rank: 2, source_tier: gallery }
+      - { name: Province, rank: 3, source_tier: gallery }
+
+  - id: ai-cup-autumn
+    name: AI CUP 秋季賽
+    host: 教育部 × 玉山銀行
+    eligibility: open          # 設社會人士組
+    status: tbd
+    region: 台灣
+    dates:
+      registration_close: { value: 2026-11?, source_tier: inferred }
+      final: { value: 2026-12?, source_tier: inferred }
+      # 2025 場：報名截止 11-05、實體複賽 12-13 於台師大
+    url: https://www.aicup.tw/
+    notes: 1–4 人一隊；隊上有一位非學生即列社會人士組
+    data_gap: 2025 得獎名單僅以 PDF 公告，隊名未取得 → 依 HR-002 可能無法湊齊三段
+
+  - id: kaggle-5day-agents
+    name: Google × Kaggle 5-Day AI Agents Intensive
+    host: Google / Kaggle
+    eligibility: open
+    status: tbd
+    region: 線上
+    dates:
+      start: { value: 2026-11?, source_tier: inferred }
+      # 2025 場為 11-10 → 11-14
+    url: https://www.kaggle.com/
+    notes: 免費、有課程帶，結業專案可直接作為作品集章節
+
+  - id: presidential-hackathon
+    name: 總統盃黑客松
+    host: 總統府 / 行政院 / 數位發展部
+    eligibility: open
+    status: closed
+    region: 台灣
+    dates:
+      intl_submission: { value: 2026-05-22/2026-07-31, source_tier: official }
+      award: { value: 2026-12?, source_tier: inferred }
+      next_open: { value: 2027-05?, source_tier: inferred }
+    url: https://presidential-hackathon.taiwan.gov.tw/
+    theme_2026: Digital Inclusion in the AI Era（數位共好：打造 AI 新未來）
+
+  - id: anthropic-build-day
+    name: Anthropic Build Day / 模型世代黑客松
+    host: Anthropic
+    eligibility: open
+    status: tbd
+    region: 舊金山 / 線上
+    dates:
+      next: { value: null, source_tier: inferred }
+      # 綁模型發表，無固定月份；需盯官方公告
+    url: https://claude.com/blog
+    notes: 公開申請制（上一場 1,500 報名取 310 人）
+
+  - id: nvidia-langchain-agents
+    name: NVIDIA × LangChain Generative AI Agents Developer Contest
+    host: NVIDIA / LangChain
+    eligibility: open
+    status: tbd
+    region: 線上
+    dates:
+      submission: { value: 2027-05?/2027-06?, source_tier: inferred }
+      # 上屆為 05-15 → 06-24
+    notes: 前 100 名有 DLI 課程、全體參賽者有數位證書 → 累積參賽紀錄性價比高
+
+  # ---------- 學生 / 校園限定 ----------
+
+  - id: innoserve
+    name: 大專校院資訊應用服務創新競賽
+    host: 台北市電腦公會（TCA）
+    eligibility: student
+    status: open
+    region: 台灣
+    dates:
+      registration: { value: 2026-08-03/2026-10-05, source_tier: official }
+      preliminary: { value: 2026-10-13/2026-10-23, source_tier: official }
+      final: { value: 2026-11-07, source_tier: official }
+    url: https://innoserve.tca.org.tw/
+    notes: 第 31 屆；21+ 組別，含 Google Gemini、Microsoft、AMD 等企業指定組
+    data_gap: 主辦方僅公布作品名與學校，無功能說明 → 依 HR-002 只能降級為日期提醒
+
+  - id: hackmit
+    name: HackMIT
+    host: MIT
+    eligibility: student
+    status: upcoming
+    region: Cambridge, MA
+    dates:
+      event: { value: 2026-09-19/2026-09-20, source_tier: press }
+      # 另有 09-12/09-13 說法，待官方確認
+    url: https://hackmit.org/
+    data_gap: 得獎僅公布於 Plume 藝廊，需 JS 渲染，尚未取得
+
+  - id: unsw-marketing-analytics
+    name: Marketing Analytics Hackathon
+    host: UNSW Business School
+    eligibility: student
+    status: tbd
+    region: 澳洲 / 線上
+    dates:
+      final: { value: 2026-09?, source_tier: inferred }
+      # 2025 場決賽為 09-05
+    notes: 純分析導向、不需做出產品；本清單中最貼近 MarTech 方向
+    theme_2025: 行銷分析如何更有效地在 TikTok 上推廣氣候行動（提供真實 TikTok 資料集）
+
+  - id: treehacks
+    name: TreeHacks
+    host: Stanford University
+    eligibility: student
+    status: closed
+    region: Stanford
+    dates:
+      event: { value: 2026-02?, source_tier: press }
+      next: { value: 2027-02?, source_tier: inferred }
+    url: https://www.treehacks.com/
+    last_year_winners:
+      - { name: Shepherd, rank: grand, source_tier: gallery }
+      - { name: Maestro, rank: music-2nd, source_tier: press }
+      - { name: RepoRx, rank: runpod-1st, source_tier: press }
