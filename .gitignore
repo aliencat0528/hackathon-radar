@@ -4,3 +4,9 @@
 
 # Claude Code 本機個人設定
 .claude/settings.local.json
+
+# 環境變數與金鑰（← D-029）
+.env
+.env.*
+!.env.example
+!.env.*.example
